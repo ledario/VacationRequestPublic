@@ -11,10 +11,33 @@
            xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy"
            xmlns:ui="http://xmlns.oracle.com/soa/designer/"
            xmlns:sca-ext="http://xmlns.oracle.com/sca/1.0-ext">
+  <import namespace="http://xmlns.oracle.com/bpel/workflow/taskService"
+          location="oramds:/soa/shared/workflow/TaskServiceInterface.wsdl" importType="wsdl"/>
   <property name="productVersion" type="xs:string" many="false">12.1.3.0.0</property>
   <property name="compositeID" type="xs:string" many="false">14f7f5ce-9870-48c3-9ea6-119232ab808d</property>
   <component name="Process">
     <implementation.bpmn src="processes/Process.bpmn"/>
-    <componentType/>
+    <componentType>
+      <reference name="HumanTasks.CreateVacationRequestHT.reference"
+                 ui:wsdlLocation="oramds:/soa/shared/workflow/TaskServiceInterface.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/bpel/workflow/taskService#wsdl.interface(TaskService)"
+                        callbackInterface="http://xmlns.oracle.com/bpel/workflow/taskService#wsdl.interface(TaskServiceCallback)"/>
+      </reference>
+    </componentType>
+    <property name="bpel.config.oneWayDeliveryPolicy" type="xs:string" many="false">sync</property>
+    <property name="bpel.config.transaction" type="xs:string" many="false">required</property>
   </component>
+  <component name="CreateVacationRequestHT">
+    <implementation.workflow src="HumanTasks/CreateVacationRequestHT.task"/>
+    <componentType>
+      <service name="TaskService" ui:wsdlLocation="oramds:/soa/shared/workflow/TaskServiceInterface.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/bpel/workflow/taskService#wsdl.interface(TaskService)"
+                        callbackInterface="http://xmlns.oracle.com/bpel/workflow/taskService#wsdl.interface(TaskServiceCallback)"/>
+      </service>
+    </componentType>
+  </component>
+  <wire>
+    <source.uri>Process/HumanTasks.CreateVacationRequestHT.reference</source.uri>
+    <target.uri>CreateVacationRequestHT/TaskService</target.uri>
+  </wire>
 </composite>

@@ -15,6 +15,18 @@
          <ns2:name>BpmProject.Role</ns2:name>
          <ns0:processRole id="Role" name="Role"/>
       </ns0:applicationRole>
+      <ns0:applicationRole id="BpmProject.Employee" isProcessRole="true">
+         <ns2:name>BpmProject.Employee</ns2:name>
+         <ns0:processRole id="Employee" name="Employee"/>
+      </ns0:applicationRole>
+      <ns0:applicationRole id="BpmProject.Manager" isProcessRole="true">
+         <ns2:name>BpmProject.Manager</ns2:name>
+         <ns0:processRole id="Manager" name="Manager"/>
+      </ns0:applicationRole>
+      <ns0:applicationRole id="BpmProject.HumanResources" isProcessRole="true">
+         <ns2:name>BpmProject.Human Resources</ns2:name>
+         <ns0:processRole id="HumanResources" name="Human Resources"/>
+      </ns0:applicationRole>
    </ns0:applicationRoles>
    <ns0:applicationRoleOrgUnitCalendarAssociations/>
    <ns0:participantPropertiesList/>

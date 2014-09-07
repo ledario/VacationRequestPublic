@@ -6,8 +6,11 @@
          <topicDocumentation name="Process"/>
          <topicDocumentation name="ACT10847013137779">
             <labels>
-               <label locale="en">UserTask</label>
+               <label locale="en">Create Vacation Request</label>
             </labels>
+            <descriptions>
+               <description locale="en"></description>
+            </descriptions>
          </topicDocumentation>
          <topicDocumentation name="EVT10847013137745">
             <labels>
