@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<bpmn:definitions fileRevision="20120601" version="12.1.3.0.0.00.00" xmlns:ns2="http://www.omg.org/spec/DD/20100524/DC" xmlns="http://www.omg.org/spec/DD/20100524/DI" xmlns:ns3="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpmnext="http://xmlns.oracle.com/bpm/OracleExtensions" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL">
+<bpmn:definitions fileRevision="20120601" version="12.1.3.0.0.00.00" xmlns:ns2="http://www.omg.org/spec/DD/20100524/DI" xmlns:ns4="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:ns3="http://www.omg.org/spec/DD/20100524/DC" xmlns:bpmnext="http://xmlns.oracle.com/bpm/OracleExtensions" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL">
     <bpmn:process processType="Public" isExecutable="true" name="Process" id="Process">
         <bpmn:extensionElements>
             <bpmnext:OracleExtensions>
@@ -91,6 +91,7 @@
                         <bpmnext:StringFeature value="USE_PROCESS_PERMISSION" name="sealType"/>
                         <bpmnext:StringFeature value="REUSE_PAYLOAD" name="reinitiatorPolicy"/>
                         <bpmnext:StringFeature value="INITIATOR" name="humanTaskType"/>
+                        <bpmnext:StringFeature value="" name="reinitiateSource"/>
                     </bpmnext:FeatureSet>
                     <bpmnext:HumanTask>
                         <bpmnext:humanTaskRef refType="namespaced" name="CreateVacationRequestHT" namespace="http://xmlns.oracle.com/VacationRequestPublic/BpmProject/CreateVacationRequestHT" elementType="TYPE" implementationType="humanTask"/>
@@ -138,6 +139,43 @@
                 </bpmn:outputSet>
             </bpmn:ioSpecification>
             <bpmn:resourceRole name="Employee" id="lane1"/>
+        </bpmn:userTask>
+        <bpmn:userTask isForCompensation="false" name="Review Vacation Request" id="ACT10856406865281">
+            <bpmn:extensionElements>
+                <bpmnext:OracleExtensions>
+                    <bpmnext:GraphicsAttributes>
+                        <bpmnext:Position x="396" y="268"/>
+                    </bpmnext:GraphicsAttributes>
+                    <bpmnext:FeatureSet>
+                        <bpmnext:BooleanFeature value="false" name="hasCheckpoint"/>
+                        <bpmnext:BooleanFeature value="false" name="isDraft"/>
+                        <bpmnext:BooleanFeature value="false" name="reinitiate"/>
+                        <bpmnext:BooleanFeature value="false" name="manualCreation"/>
+                        <bpmnext:BooleanFeature value="false" name="inputValidation"/>
+                        <bpmnext:BooleanFeature value="false" name="outputValidation"/>
+                        <bpmnext:StringFeature value="[]" name="TagFeature"/>
+                        <bpmnext:StringFeature value="PROCESS_DEFAULT" name="generatesEvents"/>
+                        <bpmnext:StringFeature value="" name="lane"/>
+                        <bpmnext:StringFeature value="Begin Level" name="level"/>
+                        <bpmnext:StringFeature value="USE_PROCESS_PERMISSION" name="sealType"/>
+                        <bpmnext:StringFeature value="REUSE_PAYLOAD" name="reinitiatorPolicy"/>
+                        <bpmnext:StringFeature value="SIMPLE" name="humanTaskType"/>
+                    </bpmnext:FeatureSet>
+                    <bpmnext:HumanTask/>
+                    <bpmnext:Localization>
+                        <bpmnext:Label>
+                            <bpmnext:LocalizedContent language="en">Review Vacation Request</bpmnext:LocalizedContent>
+                        </bpmnext:Label>
+                        <bpmnext:Description>
+                            <bpmnext:LocalizedContent language="en"></bpmnext:LocalizedContent>
+                        </bpmnext:Description>
+                    </bpmnext:Localization>
+                    <bpmnext:FlowNodeProperties/>
+                    <bpmnext:LogHandlers/>
+                </bpmnext:OracleExtensions>
+            </bpmn:extensionElements>
+            <bpmn:ioSpecification/>
+            <bpmn:resourceRole name="Manager" id="lane0"/>
         </bpmn:userTask>
         <bpmn:startEvent isInterrupting="false" name="Start" id="EVT10847013137745">
             <bpmn:extensionElements>
@@ -204,7 +242,21 @@
                 </bpmnext:OracleExtensions>
             </bpmn:extensionElements>
         </bpmn:sequenceFlow>
-        <bpmn:sequenceFlow sourceRef="ACT10847013137779" targetRef="EVT10847013137774" name="sf10847013137861" id="sf10847013137861">
+        <bpmn:sequenceFlow sourceRef="ACT10847013137779" targetRef="ACT10856406865281" name="sf10847013137861" id="sf10847013137861">
+            <bpmn:extensionElements>
+                <bpmnext:OracleExtensions>
+                    <bpmnext:SequenceFlowAttributes>
+                        <bpmnext:Positions x="394" y="146"/>
+                    </bpmnext:SequenceFlowAttributes>
+                    <bpmnext:FeatureSet>
+                        <bpmnext:BooleanFeature value="false" name="collapseMessage"/>
+                        <bpmnext:StringFeature value="394,146" name="curve"/>
+                        <bpmnext:StringFeature value="ORTHOGONAL" name="routing"/>
+                    </bpmnext:FeatureSet>
+                </bpmnext:OracleExtensions>
+            </bpmn:extensionElements>
+        </bpmn:sequenceFlow>
+        <bpmn:sequenceFlow sourceRef="ACT10856406865281" targetRef="EVT10847013137774" name="sf10856410474994" id="sf10856410474994">
             <bpmn:extensionElements>
                 <bpmnext:OracleExtensions>
                     <bpmnext:SequenceFlowAttributes/>
